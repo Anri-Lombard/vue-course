@@ -18,10 +18,10 @@
   <section id="assignment">
     <h2>Event Practice</h2>
     <!-- 1) Show an alert (any text of your choice) when the button is pressed -->
-    <button v-on:click="alertMessage('This is an alert')">Show Alert</button>
+    <button @click="alertMessage('This is an alert')">Show Alert</button>
     <hr />
     <!-- 2) Register the user input on "keydown" and output it in the paragraph (hint: event.target.value helps) -->
-    <input v-on:input="registerUser" v-on:keydown.enter="setUser" type="text" />
+    <input @input="registerUser" @keydown.enter="setUser" type="text" />
     <p>User: {{user}}</p>
     <hr />
     <!-- 3) Repeat 2) but only output the entered value if the ENTER key was pressed -->
