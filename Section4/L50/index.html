@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@next" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body id="game">
+  <header>
+    <h1>{{rival}} Slayer</h1>
+    <div>
+      <p>Choose you rival:</p>
+      <input id="choice" v-model="rival" type="text">
+    </div>
+  </header>
+  <div>
+    <section id="monster" class="container">
+      <h2>{{rival}} Health</h2>
+      <div class="healthbar">
+        <div :style="rivalBarStyles" class="healthbar__value"></div>
+      </div>
+    </section>
+    <section id="player" class="container">
+      <h2>Your Health</h2>
+      <div class="healthbar">
+        <div :style="playerBarStyles" class="healthbar__value"></div>
+      </div>
+    </section>
+    <section v-if="winner" class="container">
+      <h2>Game Over</h2>
+      <h3 v-if="winner == 'draw'">Shucks! It's a draw!</h3>
+      <h3 v-else-if="winner == 'rival'">You lost!</h3>
+      <h3 v-else>You won!</h3>
+      <button @click="restartGame">Play Again</button>
+    </section>
+    <section id="controls">
+      <button @click="attackRival">ATTACK</button>
+      <button :disabled="currentRound % 3 !== 0" @click="specialAttackMonster">SPECIAL ATTACK</button>
+      <button @click="healPlayer">HEAL</button>
+      <button @click="surrender">SURRENDER</button>
+    </section>
+    <section id="log" class="container">
+      <h2>Battle Log</h2>
+      <ul>
+        <li v-for="lm in logMessages">
+          <span
+            :class="{'log--player': lm.actionBy === 'player', 'log--monster': lm.actionBy === 'rival'}">{{lm.actionBy === 'player' ? 'Player' : 'Monster'}}</span>
+          <span v-if="lm.actionType === 'heal'"> heals themself by <span
+              class="log--heal">{{lm.actionValue}}</span></span>
+          <span v-else> attacks with <span class="log--damage">{{lm.actionValue}}</span></span>
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+
+</html>
