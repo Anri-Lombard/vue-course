@@ -47,6 +47,7 @@ Vue.createApp({
             this.rivalHealth = 100;
             this.currentRound = 0;
             this.winner = null;
+            this.logMessages = [];
         },
         attackRival() {
             this.currentRound++;
