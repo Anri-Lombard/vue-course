@@ -15,6 +15,7 @@
         {{ favouriteBook }}
       </li>
     </ul>
+    <button @click="$emit('delete', id)">Delete</button>
   </li>
 </template>
 
@@ -47,16 +48,16 @@ export default {
       // },
     },
   },
-  // emits: ["toggle-favourite"],
-  emits: {
-    "toggle-favourite": (id) => {
-      if (id) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-  },
+  emits: ["toggle-favourite", "delete"],
+  // emits: {
+  //   "toggle-favourite": (id) => {
+  //     if (id) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   },
+  // },
   // props: ["name", "company", "favouriteBook", "isFavourite"],
   data() {
     return {

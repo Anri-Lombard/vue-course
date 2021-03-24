@@ -12,6 +12,7 @@
         :favourite-book="friend.favouriteBook"
         :isFavourite="friend.isFavourite"
         @toggle-favourite="toggleFavouriteStatus"
+        @delete="removeFriendFromList"
       ></friend-contact>
     </ul>
   </section>
@@ -72,6 +73,9 @@ export default {
       }
       console.log(anotherFriend);
       this.friends.push(anotherFriend);
+    },
+    removeFriendFromList(friendId) {
+      this.friends = this.friends.filter((friend) => friend.id !== friendId);
     },
   },
 };
